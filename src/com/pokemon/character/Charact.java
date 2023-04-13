@@ -1,12 +1,12 @@
 package com.pokemon.character;
 
-public class Character {
+public class Charact {
     private String name;
     private int PosX = 0;
     private int PosY = 0;
     private int MovementSpeed = 1;
 
-    public Character(String name) {
+    public Charact(String name) {
         this.name = name;
     }
 
