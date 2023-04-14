@@ -2,8 +2,8 @@ package com.pokemon.character;
 
 public class Charact {
     private String name;
-    private int PosX = 0;
-    private int PosY = 0;
+    private int PosX = 1;
+    private int PosY = 1;
     private int MovementSpeed = 1;
 
     public Charact(String name) {
@@ -23,7 +23,7 @@ public class Charact {
     }
 
     public void setPosX(int posX) {
-        PosX = posX;
+        PosX += posX;
     }
 
     public int getPosY() {
@@ -31,7 +31,7 @@ public class Charact {
     }
 
     public void setPosY(int posY) {
-        PosY = posY;
+        PosY += posY;
     }
 
     public int getMovementSpeed() {

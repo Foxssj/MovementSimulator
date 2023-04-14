@@ -3,10 +3,14 @@ package com.pokemon.menu;
 import com.pokemon.character.Charact;
 import com.pokemon.map.Map;
 
+import java.util.Arrays;
+
 public class GameMenu {
     private Charact player;
     private Map map;
     private boolean onBike = false;
+    private String charModel = "i";
+    private final String DEFSPACE = "X";
 
     public GameMenu(Charact player, Map map) {
         this.player = player;
@@ -20,6 +24,7 @@ public class GameMenu {
     public void mountBike() {
         if (!onBike) {
             System.out.println("*You mounted your bike*");
+            charModel = "8";
             this.player.setMovementSpeed(2);
             onBike = true;
         } else {
@@ -34,6 +39,7 @@ public class GameMenu {
     public void dismoutBike() {
         if (onBike) {
             System.out.println("*You dismounted your bike*");
+            charModel = "i";
             this.player.setMovementSpeed(1);
             onBike = false;
         } else {
@@ -53,14 +59,128 @@ public class GameMenu {
     //borde y no se puede avanzar más. Del mismo modo, si va en bicicleta y queda un
     //espacio entre el personaje y el muro, en lugar de desplazarse las dos unidades
     //correspondientes, debe moverse una única unidad hasta antes del borde.
+
+    public void moveCharacter(String direccion) {
+        switch (direccion) {
+            case "W":
+            case "w":
+                if (!onBike) {
+                    if (player.getPosY() == 1){
+                        System.out.println("You can't go any further");
+                    } else {
+                        map.setMapGenerated(player.getPosX(), player.getPosY(), DEFSPACE);
+                            player.setPosY(-1);
+                        }
+                } else {
+                    if (player.getPosY() == 1){
+                        System.out.println("You can't go any further");
+                    } else if (player.getPosY() == 2) {
+                        map.setMapGenerated(player.getPosX(), player.getPosY(), DEFSPACE);
+                        player.setPosY(-1);
+                    } else {
+                        map.setMapGenerated(player.getPosX(), player.getPosY(), DEFSPACE);
+                        player.setPosY(-2);
+                    }
+                }
+                break;
+            case "A":
+            case "a":
+                if (!onBike) {
+                    if (player.getPosX() == 1){
+                        System.out.println("You can't go any further");
+                    } else {
+                        map.setMapGenerated(player.getPosX(), player.getPosY(), DEFSPACE);
+                        player.setPosX(-1);
+                    }
+                } else {
+                    if (player.getPosX() == 1){
+                        System.out.println("You can't go any further");
+                    } else if (player.getPosY() == 1) {
+                        map.setMapGenerated(player.getPosX(), player.getPosY(), DEFSPACE);
+                        player.setPosX(-1);
+                    } else {
+                        map.setMapGenerated(player.getPosX(), player.getPosY(), DEFSPACE);
+                        player.setPosX(-2);
+                    }
+                }
+                break;
+            case "D":
+            case "d":
+                if (!onBike) {
+                    if (player.getPosX() == map.getMapSize() - 1){
+                        System.out.println("You can't go any further");
+                    } else {
+                        map.setMapGenerated(player.getPosX(), player.getPosY(), DEFSPACE);
+                        player.setPosX(1);
+                    }
+                } else {
+                    if (player.getPosX() == map.getMapSize() - 1){
+                        System.out.println("You can't go any further");
+                    } else if (player.getPosY() == map.getMapSize() - 2) {
+                        map.setMapGenerated(player.getPosX(), player.getPosY(), DEFSPACE);
+                        player.setPosX(1);
+                    } else {
+                        map.setMapGenerated(player.getPosX(), player.getPosY(), DEFSPACE);
+                        player.setPosX(2);
+                    }
+                }
+                break;
+            case "S":
+            case "s":
+                if (!onBike) {
+                    if (player.getPosY() == map.getMapSize() - 1){
+                        System.out.println("You can't go any further");
+                    } else {
+                        map.setMapGenerated(player.getPosX(), player.getPosY(), DEFSPACE);
+                        player.setPosY(1);
+                    }
+                } else {
+                    if (player.getPosY() == map.getMapSize() - 1){
+                        System.out.println("You can't go any further");
+                    } else if (player.getPosY() == map.getMapSize() - 2) {
+                        map.setMapGenerated(player.getPosX(), player.getPosY(), DEFSPACE);
+                        player.setPosY(1);
+                    } else {
+                        map.setMapGenerated(player.getPosX(), player.getPosY(), DEFSPACE);
+                        player.setPosY(2);
+                    }
+                }
+                break;
+        }
+    }
+
     //e) Es necesario un método que pinte el mapa con el personaje en la posición que
     //corresponde. La representación del mismo puede ser, “O” cuando está caminando,
     //y “8” cuando está en bicicleta.
+
+    public void showMap() {
+        String tempMap = "";
+
+        for (int i = 0; i < map.getMapGenerated().length; i++) {
+            for (int j = 0; j < map.getMapSize(); j++) {
+                if (i == player.getPosY() && j == player.getPosX()) {
+                    tempMap += charModel;
+                } else {
+                    tempMap += Arrays.toString(map.getMapGenerated()[i]) + "\n";
+                }
+            }
+
+
+
+        }
+
+
+        map.setMapGenerated(player.getPosY(), player.getPosX(), charModel);
+        System.out.println(map);
+    }
+
     //f) Por último, debe incluir un método que retorne una cadena de texto informando
     //de la leyenda completa de símbolos utilizados tanto para el mapa como para el
     //usuario.
     //# → Borde del mapa (no accesible)
     //X → Suelo del mapa (accesible)
     //O → Posición del personaje (caminando)
-    //8 → Posición del personaje (en bic
+    //8 → Posición del personaje (en bici)
+
+
 }

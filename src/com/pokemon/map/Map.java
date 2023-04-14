@@ -13,8 +13,15 @@ public class Map {
     private String[][] mapGenerated;
 
     public Map(int mapSize) {
-        this.mapSize = mapSize;
-        this.mapGenerated = MapGenerator.mapGeneration(mapSize);
+        if (mapSize < 3) {
+            this.mapSize = 3;
+            this.mapGenerated = MapGenerator.mapGeneration(this.mapSize);
+        } else {
+            this.mapSize = mapSize;
+
+            this.mapGenerated = MapGenerator.mapGeneration(mapSize);
+        }
+
     }
 
     public int getMapSize() {
@@ -29,8 +36,8 @@ public class Map {
         return mapGenerated;
     }
 
-    public void setMapGenerated(String[][] mapGenerated) {
-        this.mapGenerated = mapGenerated;
+    public void setMapGenerated(int pos1, int pos2, String player) {
+        this.mapGenerated[pos1][pos2] = player;
     }
 
     @Override
