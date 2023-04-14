@@ -146,6 +146,7 @@ public class GameMenu {
                     }
                 }
                 break;
+            case "Q":
         }
     }
 
@@ -164,12 +165,7 @@ public class GameMenu {
                     tempMap += Arrays.toString(map.getMapGenerated()[i]) + "\n";
                 }
             }
-
-
-
         }
-
-
         map.setMapGenerated(player.getPosY(), player.getPosX(), charModel);
         System.out.println(map);
     }
@@ -182,5 +178,11 @@ public class GameMenu {
     //O → Posición del personaje (caminando)
     //8 → Posición del personaje (en bici)
 
+    public void mapInfo() {
+        System.out.println("# → Borde del mapa (no accesible)\n" +
+                "X → Suelo del mapa (accesible)\n" +
+                "i → Posición del personaje (caminando)\n" +
+                "8 → Posición del personaje (en bici)");
+    }
 
 }
