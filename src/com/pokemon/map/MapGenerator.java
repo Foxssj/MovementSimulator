@@ -27,8 +27,8 @@ public class MapGenerator {
     }
 
     public static String ShowMap() {
-        String index = "# → Borde del mapa (no accesible)\n" +
-                "X → Suelo del mapa (accesible)";
+        String index = "# → map border (not accesible)\n" +
+                "X → maps floor (accesible)";
         return index;
     }
 }

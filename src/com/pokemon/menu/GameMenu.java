@@ -95,7 +95,7 @@ public class GameMenu {
                 } else {
                     if (player.getPosX() == 1){
                         System.out.println("You can't go any further");
-                    } else if (player.getPosY() == 1) {
+                    } else if (player.getPosX() == 2) {
                         map.setMapGenerated(player.getPosX(), player.getPosY(), DEFSPACE);
                         player.setPosX(-1);
                     } else {
@@ -116,7 +116,7 @@ public class GameMenu {
                 } else {
                     if (player.getPosX() == map.getMapSize() - 1){
                         System.out.println("You can't go any further");
-                    } else if (player.getPosY() == map.getMapSize() - 2) {
+                    } else if (player.getPosX() == map.getMapSize() - 2) {
                         map.setMapGenerated(player.getPosX(), player.getPosY(), DEFSPACE);
                         player.setPosX(1);
                     } else {
@@ -128,16 +128,16 @@ public class GameMenu {
             case "S":
             case "s":
                 if (!onBike) {
-                    if (player.getPosY() == map.getMapSize() - 1){
+                    if (player.getPosY() == map.getMapSize() - 2){
                         System.out.println("You can't go any further");
                     } else {
                         map.setMapGenerated(player.getPosX(), player.getPosY(), DEFSPACE);
                         player.setPosY(1);
                     }
                 } else {
-                    if (player.getPosY() == map.getMapSize() - 1){
+                    if (player.getPosY() == map.getMapSize() - 2){
                         System.out.println("You can't go any further");
-                    } else if (player.getPosY() == map.getMapSize() - 2) {
+                    } else if (player.getPosY() == map.getMapSize() - 3) {
                         map.setMapGenerated(player.getPosX(), player.getPosY(), DEFSPACE);
                         player.setPosY(1);
                     } else {
@@ -179,10 +179,10 @@ public class GameMenu {
     //8 → Posición del personaje (en bici)
 
     public void mapInfo() {
-        System.out.println("# → Borde del mapa (no accesible)\n" +
-                "X → Suelo del mapa (accesible)\n" +
-                "i → Posición del personaje (caminando)\n" +
-                "8 → Posición del personaje (en bici)");
+        System.out.println("# → map border (not accesible)\n" +
+                "X → maps floor (accesible)\n" +
+                "i → player position (walking)\n" +
+                "8 → player position (on bike)");
     }
 
 }

@@ -11,15 +11,15 @@ public class Main {
         String name, option;
         int map_size;
         boolean playing = true;
-        boolean stop = false;
-        boolean onBike = false;
+        boolean onBike = true;
+
 
         String menu = """
                 1.- Move Around
                 2.- Ride or dismout your bike
                 3.- Look at your map
                 4.- show info of the map icons
-                5.- Let this world ends...""";
+                5.- Let this world end...""";
 
         // Finalmente, en el método principal de la clase ejecutable de tu proyecto, da una
         //bienvenida al usuario.
@@ -55,6 +55,7 @@ public class Main {
 
             switch (option) {
                 case "1":
+                    boolean stop = true;
                     String movement;
                     System.out.println("*you see a piece of paper in the floor*" +
                             "\n'use WASD to move, if you want to stop press Q'");
@@ -62,7 +63,7 @@ public class Main {
                         System.out.println("*you tought where to go*");
                         movement = sc.nextLine();
                         if (movement.equals("Q")) {
-                            stop = true;
+                            stop = false;
                         } else {
                             gameMenu.moveCharacter(movement);
                         }
@@ -75,8 +76,7 @@ public class Main {
                                 "\n ride it? (yes / no)");
                         answer = sc.nextLine();
                         if (answer.equals("yes")){
-                            System.out.println("*you mounted the bike*");
-                            onBike = true;
+                            onBike = false;
                             gameMenu.mountBike();
                         } else {
                             System.out.println("*the bike dissapear*");
@@ -85,8 +85,7 @@ public class Main {
                         System.out.println("you want to dismount the bike?");
                         answer = sc.nextLine();
                         if (answer.equals("yes")){
-                            System.out.println("*you dismounted the bike*");
-                            onBike = false;
+                            onBike = true;
                             gameMenu.dismoutBike();
                         } else {
                             System.out.println("*you stayed on the bike*");
