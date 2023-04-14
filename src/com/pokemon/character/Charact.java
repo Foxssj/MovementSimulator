@@ -1,12 +1,12 @@
 package com.pokemon.character;
 
-public class Character {
+public class Charact {
     private String name;
-    private int PosX = 0;
-    private int PosY = 0;
+    private int PosX = 1;
+    private int PosY = 1;
     private int MovementSpeed = 1;
 
-    public Character(String name) {
+    public Charact(String name) {
         this.name = name;
     }
 
@@ -23,7 +23,7 @@ public class Character {
     }
 
     public void setPosX(int posX) {
-        PosX = posX;
+        PosX += posX;
     }
 
     public int getPosY() {
@@ -31,7 +31,7 @@ public class Character {
     }
 
     public void setPosY(int posY) {
-        PosY = posY;
+        PosY += posY;
     }
 
     public int getMovementSpeed() {
