@@ -11,6 +11,8 @@ public class Main {
         String name, option;
         int map_size;
         boolean playing = true;
+        boolean stop = false;
+        boolean onBike = false;
 
         String menu = """
                 1.- Move Around
@@ -53,7 +55,6 @@ public class Main {
 
             switch (option) {
                 case "1":
-                    boolean stop = false;
                     String movement;
                     System.out.println("*you see a piece of paper in the floor*" +
                             "\n'use WASD to move, if you want to stop press Q'");
@@ -66,7 +67,45 @@ public class Main {
                             gameMenu.moveCharacter(movement);
                         }
                     }
-
+                    break;
+                case "2":
+                    String answer;
+                    if (onBike) {
+                        System.out.println("*you tought of a bike and suddenly one appears besides you*" +
+                                "\n ride it? (yes / no)");
+                        answer = sc.nextLine();
+                        if (answer.equals("yes")){
+                            System.out.println("*you mounted the bike*");
+                            onBike = true;
+                            gameMenu.mountBike();
+                        } else {
+                            System.out.println("*the bike dissapear*");
+                        }
+                    } else {
+                        System.out.println("you want to dismount the bike?");
+                        answer = sc.nextLine();
+                        if (answer.equals("yes")){
+                            System.out.println("*you dismounted the bike*");
+                            onBike = false;
+                            gameMenu.dismoutBike();
+                        } else {
+                            System.out.println("*you stayed on the bike*");
+                        }
+                    }
+                    break;
+                case "3":
+                    gameMenu.showMap();
+                    break;
+                case "4":
+                    gameMenu.mapInfo();
+                    break;
+                case "5":
+                    System.out.println("*You let this world perish as you go*");
+                    playing = false;
+                    break;
+                default:
+                    System.out.println("You reconsidered your options");
+                    break;
             }
         }
 
